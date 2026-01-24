@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Diary Studioの絵日記作成ページです。ユーザーは、写真に文章を添えて、絵日記風に思い出や毎日の出来事を残すことができます。">
+	<title>絵日記を作る | Diary Studio</title>
+	<link rel="icon" href="images/favicon.png">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Yuji+Syuku&family=Zen+Maru+Gothic:wght@500;900&display=swap"
+		rel="stylesheet">
+
+	<link rel="stylesheet" href="css/common.css">
+	<link rel="stylesheet" href="css/picturediary.css">
+</head>
+
+<body>
+	<header class="subpage-header">
+		<nav class="nav-left">
+			<a href="index.html">ホーム</a>
+			<a href="index.html#about">Diary Studioについて</a>
+		</nav>
+		<div class="logo">
+			<img src="images/logo-white.png" alt="">
+			Diary Studio
+		</div>
+		<nav class="nav-right">
+			<a href="#">日記を作る <svg class="arrow" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+					viewBox="0 0 10 10">
+					<polyline points="2,3 5,6 8,3" fill="none" stroke="currentColor" stroke-width="2"
+						stroke-linecap="round" stroke-linejoin="round" />
+				</svg></a>
+			<ul class="dropdown">
+				<li><a href="index.html#making-diary">日記のスタイルを選ぶ</a></li>
+				<li><a href="#">絵日記を作る</a></li>
+				<li><a href="tweetdiary.html">ひとこと日記を作る</a></li>
+			</ul>
+			<a href="index.html#contact-form">お問い合わせ</a>
+		</nav>
+	</header>
+
+	<!-- ハンバーガーメニュー -->
+	<button id="menu-btn">
+		<span class="icon">☰</span>
+		<span class="text">メニュー</span>
+	</button>
+
+	<!-- ボタンを押すと出てくるサイドナビ -->
+	<nav id="side-nav">
+		<ul>
+			<li><a href="index.html" class="side-nav-home">ホーム</a></li>
+			<li><a href="index.html#about">Diary Studioについて</a></li>
+			<li>
+				<a href="#" id="submenu-button">日記を作る <svg class="arrow" xmlns="http://www.w3.org/2000/svg" width="20"
+						height="20" viewBox="0 0 10 10">
+						<polyline points="2,3 5,6 8,3" fill="none" stroke="currentColor" stroke-width="2"
+							stroke-linecap="round" stroke-linejoin="round" />
+					</svg></a>
+				<ul class="submenu">
+					<li><a href="index.html#making-diary">日記のスタイルを選ぶ</a></li>
+					<li><a href="#">絵日記を作る</a></li>
+					<li><a href="tweetdiary.html">ひとこと日記を作る</a></li>
+				</ul>
+			</li>
+			<li><a href="index.html#contact-form">お問い合わせ</a></li>
+		</ul>
+	</nav>
+
+	<!-- オーバーレイ -->
+	<div id="overlay"></div>
+
+	<main>
+		<div id="h1andcapture-container" class="fade-in">
+			<h1>絵日記を作る</h1>
+			<img src="images/namisen.png" alt="" class="namisen">
+			<p id="capture">お気に入りの写真に文章を添えて<span class="br-phone"><br></span>オリジナルの絵日記を作れます<br>
+				文字の色や背景などのスタイルを設定して、<span class="br-phone"><br></span>自分好みの絵日記を作成しましょう!</p>
+		</div>
+		<div class="main-container">
+
+			<div id="preview-container">
+				<h2> <img src="images/preview.png" alt="">プレビュー</h2>
+				<div id="canvas-wrapper" class="back-white"><!-- 日記の背景色・画像を変えるためのdivタグ -->
+					<canvas id="canvas-preview" width="600" height="650">
+						canvas要素をサポートしていないため、絵日記機能はつかえません
+					</canvas>
+				</div>
+			</div>
+			<div class="setting-container">
+				<div class="style-container">
+					<button class="toggle-btn">▼スタイルの設定（開く）</button>
+					<div class="style-contents">
+						<div class="style-inner">
+							<div id="background-container" class="style-option">
+								<h3>背景</h3>
+								<div class="style-button-container">
+									<button name="background" value="white" class="active">白</button>
+									<button name="background" value="black">黒</button>
+									<button name="background" value="wasi"></button>
+									<button name="background" value="kami"></button>
+								</div>
+							</div>
+							<div id="text-color-container" class="style-option">
+								<h3>テキストの色</h3>
+								<div class="style-button-container">
+									<button name="textcolor" value="black" class="active">黒</button>
+									<button name="textcolor" value="white">白</button>
+									<label for="text-colorPicker"><span class="other-colors">その他：</span></label>
+									<input type="color" id="text-colorPicker" value="#ff4d4d">
+								</div>
+							</div>
+
+							<div id="frame-color-container" class="style-option">
+								<h3>枠線の色</h3>
+								<div class="style-button-container">
+									<button name="frameColor" value="black" class="active">黒</button>
+									<button name="frameColor" value="white">白</button>
+									<label for="frame-colorPicker"><span class="other-colors">その他：</span></label>
+									<input type="color" id="frame-colorPicker" value="#ff4d4d">
+								</div>
+							</div>
+
+							<div id="font-container" class="style-option">
+								<h3>フォント</h3>
+								<div class="style-button-container">
+									<button name="font" value="Arial" class="active">シンプル</button>
+									<button name="font" value="Yu Gothic">モダン</button>
+									<button name="font" value="Yuji Syuku">筆文字</button>
+								</div>
+							</div>
+
+							<div id="stamp-section" class="style-option">
+								<h3>スタンプ</h3>
+								<button id="stamp-selector">
+									選択
+								</button>
+								<!-- 選択中のスタンププレビュー -->
+								<label for="stamp-preview">選択中のスタンプ：</label>
+								<img id="stamp-preview" src="images/stamps/no-stamp.jpg" alt="スタンプなし">
+							</div>
+							<button id="style-reset">スタイルのリセット</button>
+						</div>
+					</div>
+				</div>
+
+				<fieldset id="date-container">
+					<legend>日付の表示設定</legend>
+					<button name="date-toggle" value="off" class="active">なし</button>
+					<button name="date-toggle" value="on">あり</button>
+					<input type="date" id="date-input" style="display:none;">
+				</fieldset>
+
+				<div id="image-selection-area">
+					<label for="fileInput">画像の選択/変更</label>
+					<input type="file" id="fileInput" accept="image/*">
+					<button id="img-delete"><img src="images/trash.png" alt=""> 削除</button>
+				</div>
+
+				<label for="picturediary-text">日記の文字入力欄</label>
+				<textarea name="" id="picturediary-text"></textarea>
+
+				<button id="download">絵日記を保存（PNG画像）</button>
+			</div>
+		</div>
+
+		<!-- モーダル（最初は非表示） -->
+		<div id="stamp-modal">
+			<div id="stamp-content">
+				<h3>スタンプを選択</h3>
+				<div id="stamp-container">
+					<button id="stamp-delete" class="active "><img src="images/stamps/no-stamp.jpg"
+							alt="スタンプなし"></button>
+					<button class="stamp-btn" data-stamp="cake">
+						<img src="images/stamps/stamp-cake.png" alt="ケーキ">
+					</button>
+					<button class="stamp-btn" data-stamp="paw">
+						<img src="images/stamps/stamp-paw.png" alt="肉球">
+					</button>
+					<button class="stamp-btn" data-stamp="star">
+						<img src="images/stamps/stamp-star.png" alt="星">
+					</button>
+					<button class="stamp-btn" data-stamp="heart">
+						<img src="images/stamps/stamp-heart.png" alt="ハート">
+					</button>
+					<button class="stamp-btn" data-stamp="hanko">
+						<img src="images/stamps/stamp-hanko.png" alt="たいへんよくできましたのはんこ">
+					</button>
+				</div>
+				<button id="stamp-modal-close">閉じる</button>
+			</div>
+		</div>
+	</main>
+	<footer class="site-footer">
+		<div class="wave-decoration">
+			<svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+				<path d="M0,0 C150,80 350,80 600,50 C850,20 1050,20 1200,50 L1200,120 L0,120 Z"></path>
+			</svg>
+		</div>
+
+		<div class="footer-content">
+			<div class="footer-logo">
+				<img src="images/logo-white.png" alt="Diary Studio">
+				<h3>Diary Studio</h3>
+				<p class="tagline">思い出をカタチにする、自分だけの日記スタジオ</p>
+			</div>
+
+			<nav class="footer-nav">
+				<a href="index.html">ホーム</a>
+				<span class="separator">|</span>
+				<a href="index.html#about">Diary Studioについて</a>
+				<span class="separator">|</span>
+				<a href="index.html#making-diary">日記を作る</a>
+				<span class="separator">|</span>
+				<a href="index.html#contact-form">お問い合わせ</a>
+			</nav>
+			<p class="copyright">© 2025 Diary Studio</p>
+		</div>
+	</footer>
+	<script src="js/script.js"></script>
+	<script src="js/picturediary.js"></script>
+</body>
+
+</html>

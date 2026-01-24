@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description"
+		content="Diary Studioは、絵日記やひとこと日記などの日記をブラウザ上で作成することができるウェブサイトです。ユーザーは、写真や地図を活用しながら、思い出や日々の出来事を残すことができます。">
+	<link rel="icon" href="images/favicon.png">
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;900&display=swap" rel="stylesheet">
+
+	<link rel="stylesheet" href="css/common.css">
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/toppage_responsive.css">
+	<title>Diary Studio</title>
+</head>
+
+<body>
+	<!-- 最初に表示される通常ヘッダー -->
+	<header class="top-header">
+		<nav class="nav-left">
+			<a href="#">ホーム</a>
+			<a href="#about">Diary Studioについて</a>
+		</nav>
+		<nav class="nav-right">
+			<a href="#">日記を作る <svg class="arrow" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+					viewBox="0 0 10 10">
+					<polyline points="2,3 5,6 8,3" fill="none" stroke="currentColor" stroke-width="2"
+						stroke-linecap="round" stroke-linejoin="round" />
+				</svg></a>
+			<ul class="dropdown">
+				<li><a href="#making-diary">日記のスタイルを選ぶ</a></li>
+				<li><a href="picturediary.html">絵日記を作る</a></li>
+				<li><a href="tweetdiary.html">ひとこと日記を作る</a></li>
+			</ul>
+			<a href="#contact-form">お問い合わせ</a>
+		</nav>
+	</header>
+
+	<!-- スクロール後に出てくる固定ヘッダー -->
+	<header class="fixed-header">
+		<nav class="nav-left">
+			<a href="#">ホーム</a>
+			<a href="#about">Diary Studioについて</a>
+		</nav>
+
+		<div class="logo">
+			<img src="images/logo-white.png" alt="">
+			Diary Studio
+		</div>
+
+		<nav class="nav-right">
+			<a href="#">日記を作る <svg class="arrow" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+					viewBox="0 0 10 10">
+					<polyline points="2,3 5,6 8,3" fill="none" stroke="currentColor" stroke-width="2"
+						stroke-linecap="round" stroke-linejoin="round" />
+				</svg></a>
+			<ul class="dropdown">
+				<li><a href="#making-diary">日記のスタイルを選ぶ</a></li>
+				<li><a href="picturediary.html">絵日記を作る</a></li>
+				<li><a href="tweetdiary.html">ひとこと日記を作る</a></li>
+			</ul>
+			<a href="#contact-form">お問い合わせ</a>
+		</nav>
+	</header>
+
+	<!-- ハンバーガーメニュー -->
+	<button id="menu-btn">
+		<span class="icon">☰</span>
+		<span class="text">メニュー</span>
+	</button>
+
+	<!-- ボタンを押すと出てくるサイドナビ -->
+	<nav id="side-nav">
+		<ul>
+			<li><a href="#" class="side-nav-home">ホーム</a></li>
+			<li><a href="#about">Diary Studioについて</a></li>
+			<li>
+				<a href="#" id="submenu-button">日記を作る <svg class="arrow" xmlns="http://www.w3.org/2000/svg" width="20"
+						height="20" viewBox="0 0 10 10">
+						<polyline points="2,3 5,6 8,3" fill="none" stroke="currentColor" stroke-width="2"
+							stroke-linecap="round" stroke-linejoin="round" />
+					</svg></a>
+				<ul class="submenu">
+					<li><a href="#making-diary">日記のスタイルを選ぶ</a></li>
+					<li><a href="picturediary.html">絵日記を作る</a></li>
+					<li><a href="tweetdiary.html">ひとこと日記を作る</a></li>
+				</ul>
+			</li>
+			<li><a href="#contact-form">お問い合わせ</a></li>
+		</ul>
+	</nav>
+	<!-- オーバーレイ -->
+	<div id="overlay"></div>
+
+	<main>
+		<div id="first-view" class="fade-in">
+			<div id="first-view-container">
+				<p id="catchphrase">絵日記も、ひとこと日記も</p>
+				<!-- fadein-logoはアニメのためにつけた -->
+				<img src="images/logo.png" alt="DiaryStudio" class="fadein-logo">
+				<h1>Diary Studio</h1>
+				<p id="capture">思い出をカタチにする、<span class="br-phone"><br></span>自分だけの日記スタジオ</p>
+				<div class="button">
+					<a href="#making-diary">日記をえらぶ</a>
+				</div>
+			</div>
+		</div>
+		<div id="about" class="fade-in">
+			<div id="about-text">
+				<h2><span class="reset-font">Diary Studio</span>について</h2>
+				<img src="images/namisen.png" alt="" class="namisen">
+				<div id="about-text-container">
+					<p><span class="reset-font">Diary Studio</span>は、絵日記やひとこと日記など<br>
+						あなたの思い出を自由に残せる日記サイトです。 <br>
+						写真や地図をつかって、日々の思い出を楽しく記録できます。</p>
+				</div>
+				<p class="special-text">毎日の出来事を、楽しくカタチにしてみましょう！</p>
+			</div>
+			<div id="about-feature">
+				<div class="feature-contents">
+					<div class="feature-catchphrase" id="feature-key">
+						<img src="images/icon-key.png" alt="">
+						<h3>すぐ始められる</h3>
+					</div>
+					<p>面倒な登録は一切不要 <br>ページを開くだけで始められます</p>
+				</div>
+				<div class="feature-contents">
+					<div class="feature-catchphrase" id="feature-free">
+						<img src="images/icon-free.png" alt="">
+						<h3>完全無料</h3>
+					</div>
+					<p>ご利用はもちろん無料！<br>追加料金の心配もありません</p>
+				</div>
+				<div class="feature-contents">
+					<div class="feature-catchphrase" id="feature-browser">
+						<img src="images/icon-browser.png" alt="">
+						<h3>アプリ不要</h3>
+					</div>
+					<p>スマホでもパソコンでもOK<br>ブラウザからそのまま使えます</p>
+				</div>
+			</div>
+		</div>
+
+		<div id="making-diary" class="fade-in">
+			<h2>日記をえらぶ</h2>
+			<img src="images/namisen.png" alt="" class="namisen">
+			<p id="making-diary-text">二つのスタイルから、お好みの方法で日記を作れます</p>
+			<div id="making-diary-container">
+				<!-- 絵日記 -->
+				<div class="cssbook-container">
+					<div class="cssbook picture-book">
+						<input id="picture-toggle" class="book-toggle" type="checkbox" />
+						<label class="cover" for="picture-toggle">
+							<div class="img-page">
+								<img src="images/picturediary.jpg" alt="サンプル画像">
+							</div>
+						</label>
+						<label class="page1" for="picture-toggle">
+							<div class="img-page">
+								<img src="images/picturediary.gif" alt="サンプル画像">
+							</div>
+						</label>
+						<label class="page2" for="picture-toggle">
+							<div class="text-page">
+								<h4> 自由なスタイルで<span class="br-phone"><br></span>描く日記</h4>
+								<p> 写真をメインに、文字色・背景などのスタイルを<span
+										class="blue_marker">自分好みに設定</span>できます！<br>作成した日記は画像として保存も可能です。
+								</p>
+							</div>
+						</label>
+					</div>
+					<p class="diary-kinds">絵日記</p>
+					<p class="diary-features">お気に入りの写真に文章を添えて<br>オリジナルの絵日記を作れます</p>
+					<div class="button" id="picturediary-button">
+						<a href="picturediary.html">絵日記を作る</a>
+					</div>
+				</div>
+				<!-- ひとこと日記 -->
+				<div class="cssbook-container">
+					<div class="cssbook tweet-book">
+						<input id="tweet-toggle" type="checkbox" class="book-toggle">
+						<label class="cover" for="tweet-toggle">
+							<div class="img-page">
+								<img src="images/tweetdiary.png" alt="">
+							</div>
+						</label>
+						<label class="page1" for="tweet-toggle">
+							<div class="img-page">
+								<img src="images/tweetdiary.gif" alt="">
+							</div>
+						</label>
+						<label class="page2" for="tweet-toggle">
+							<div class="text-page">
+								<h4>場所とつながって<span class="br-phone"><br></span>残す日記</h4>
+								<p> 地図上にピンを立て、<span class="pink_marker">「ひとこと」を記録</span>します。
+									<br>お気に入りの場所や旅行の記録など直感的に管理しましょう！</p>
+							</div>
+						</label>
+					</div>
+					<p class="diary-kinds">ひとこと日記</p>
+					<p class="diary-features">地図にピンを立てて、ひとことや <br>写真を加えたカード型の日記を残せます</p>
+					<div class="button" id="tweetdiary-button">
+						<a href="tweetdiary.html">ひとこと日記を作る</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="contact-form" class="fade-in">
+			<h2>お問い合わせ</h2>
+			<img src="images/namisen.png" alt="" class="namisen">
+			<p class="contact-form-text"><span class="reset-font">Diary
+					Studio</span>に関するご質問やご意見は、下記フォームよりお気軽にお送りください。<br>
+				内容によっては回答にお時間をいただく場合や、ご回答できない場合もございます。<br>
+				あらかじめご了承ください。</p>
+
+			<form action="#">
+				<fieldset>
+					<legend>お客様情報</legend>
+
+					<div class="form-group">
+						<label for="name">お名前 <span class="required">必須</span></label>
+						<input type="text" id="name" name="name" required maxlength="50" autocomplete="name">
+					</div>
+					<div class="form-group">
+						<label for="email">メールアドレス <span class="required">必須</span></label>
+						<input type="email" id="email" name="email" required autocomplete="email">
+					</div>
+				</fieldset>
+				<fieldset>
+					<legend>お問い合わせ内容</legend>
+					<div class="form-group">
+						<label for="category">お問い合わせの種類 <span class="required">必須</span></label>
+						<select id="category" name="category" required>
+							<option value="bug">不具合・エラー報告</option>
+							<option value="feature">新機能のご要望</option>
+							<option value="other">その他</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="subject">件名</label>
+						<input type="text" id="subject" name="subject">
+					</div>
+					<div class="form-group">
+						<label for="message">お問い合わせ内容 <span class="required">必須</span></label>
+						<textarea id="message" name="message" required maxlength="2000"
+							placeholder="詳しい内容をご記入ください（2000文字以内）"></textarea>
+					</div>
+				</fieldset>
+				<p id="proviso">
+					※このフォームは練習用のため、実際には送信されません</p>
+				<button type="submit" class="submit-btn">送信する</button>
+			</form>
+		</div>
+	</main>
+
+	<footer class="site-footer">
+		<div class="wave-decoration">
+			<svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+				<path d="M0,0 C150,80 350,80 600,50 C850,20 1050,20 1200,50 L1200,120 L0,120 Z"></path>
+			</svg>
+		</div>
+
+		<div class="footer-content">
+			<div class="footer-logo">
+				<img src="images/logo-white.png" alt="DiaryStudio">
+				<h3>Diary Studio</h3>
+				<p class="tagline">思い出をカタチにする、自分だけの日記スタジオ</p>
+			</div>
+
+			<nav class="footer-nav">
+				<a href="#">ホーム</a>
+				<span class="separator">|</span>
+				<a href="#about">Diary Studioについて</a>
+				<span class="separator">|</span>
+				<a href="#making-diary">日記を作る</a>
+				<span class="separator">|</span>
+				<a href="#contact-form">お問い合わせ</a>
+			</nav>
+			<p class="copyright">© 2025 Diary Studio</p>
+		</div>
+	</footer>
+	<script src="js/script.js"></script>
+	<script src="js/toppage.js"></script>
+</body>
+
+</html>

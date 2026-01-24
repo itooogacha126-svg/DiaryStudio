@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Diary Studioのひとこと日記作成ページです。ユーザーは、地図にピンを立てて、その場所の思い出を言葉や写真で残すことができます。">
+    <title>ひとこと日記を作る | Diary Studio</title>
+    <link rel="icon" href="images/favicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/tweetdiary.css">
+
+</head>
+
+<body>
+    <header class="subpage-header">
+        <nav class="nav-left">
+            <a href="index.html">ホーム</a>
+            <a href="index.html#about">Diary Studioについて</a>
+        </nav>
+        <div class="logo">
+            <img src="images/logo-white.png" alt="">
+            Diary Studio
+        </div>
+        <nav class="nav-right">
+            <a href="#">日記を作る <svg class="arrow" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                    viewBox="0 0 10 10">
+                    <polyline points="2,3 5,6 8,3" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" />
+                </svg></a>
+            <ul class="dropdown">
+                <li><a href="index.html#making-diary">日記のスタイルを選ぶ</a></li>
+                <li><a href="picturediary.html">絵日記を作る</a></li>
+                <li><a href="#">ひとこと日記を作る</a></li>
+            </ul>
+            <a href="index.html#contact-form">お問い合わせ</a>
+        </nav>
+    </header>
+
+    <!-- ハンバーガーメニュー -->
+    <button id="menu-btn">
+        <span class="icon">☰</span>
+        <span class="text">メニュー</span>
+    </button>
+
+    <!-- ボタンを押すと出てくるサイドナビ -->
+    <nav id="side-nav">
+        <ul>
+            <li><a href="index.html" class="side-nav-home">ホーム</a></li>
+            <li><a href="index.html#about">Diary Studioについて</a></li>
+            <li>
+                <a href="#" id="submenu-button">日記を作る <svg class="arrow" xmlns="http://www.w3.org/2000/svg" width="20"
+                        height="20" viewBox="0 0 10 10">
+                        <polyline points="2,3 5,6 8,3" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg></a>
+                <ul class="submenu">
+                    <li><a href="index.html#making-diary">日記のスタイルを選ぶ</a></li>
+                    <li><a href="picturediary.html">絵日記を作る</a></li>
+                    <li><a href="#">ひとこと日記を作る</a></li>
+                </ul>
+            </li>
+            <li><a href="index.html#contact-form">お問い合わせ</a></li>
+        </ul>
+    </nav>
+
+    <!-- オーバーレイ -->
+    <div id="overlay"></div>
+
+    <main>
+        <div id="h1andcapture-container" class="fade-in">
+            <h1>ひとこと日記を作る</h1>
+            <img src="images/namisen.png" alt="" class="namisen">
+            <p id="capture">地図にピンを立て、写真やひとことを添えた<span class="br-phone"><br></span>カード型の日記を残せます<br>
+                ピンと日記は連動しているため、<span class="br-phone"><br></span>タップで互いが目立つように表示されます</p>
+        </div>
+        <div class="main-container">
+            <div class="top-section">
+                <div class="map-container">
+                    <div id="map"></div>
+                </div>
+                <div class="input-container" id="inputContainer">
+                    <button class="toggle-btn" id="toggleBtn">
+                        ひとこと日記を追加
+                    </button>
+                    <div class="form-content" id="formContent">
+                        <h2> <img src="images/pin.png" alt="">ひとこと日記を追加</h2>
+                        <form id="diaryForm">
+                            <div class="form-group">
+                                <label id="label-pin" class="active" style="font-weight: 600;">1. ピンをたてる</label>
+                                <p style="font-size: 12px; color: #666; margin-top: 5px;">地図上をクリックして場所を選択してください</p>
+                            </div>
+                            <div class="form-group">
+                                <label for="date" id="label-date" class="disabled">2. 日付 </label>
+                                <input type="date" id="date" name="date" required disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="comment" id="label-comment" class="disabled">3. 感想 </label>
+                                <textarea id="comment" name="comment" maxlength="100" placeholder="100文字まで記入できます"
+                                    required disabled></textarea>
+                                <div class="char-count">
+                                    <span id="charCount">0</span>/100文字
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="photo" id="label-photo" class="disabled">4. 写真 (任意)</label>
+                                <input type="file" id="photo" name="photo" accept="image/*" disabled>
+                            </div>
+                            <button type="submit" class="save-btn" id="saveBtn" disabled>追加する</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bottom-section">
+                <div class="cards-container">
+                    <div class="cards-header">
+                        <h2><img src="images/coment.png" alt=""> 保存された日記 (<span id="memoCount">0</span>/8)</h2>
+                        <button class="delete-all-btn"><img src="images/trash.png" alt=""> 全て削除</button>
+                    </div>
+                    <div class="cards-grid" id="cardsGrid">
+                        <div class="status-message">地図をクリックして日記を追加してください</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="wave-decoration">
+            <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M0,0 C150,80 350,80 600,50 C850,20 1050,20 1200,50 L1200,120 L0,120 Z"></path>
+            </svg>
+        </div>
+
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="images/logo-white.png" alt="Diary Studio">
+                <h3>Diary Studio</h3>
+                <p class="tagline">思い出をカタチにする、自分だけの日記スタジオ</p>
+            </div>
+
+            <nav class="footer-nav">
+                <a href="index.html">ホーム</a>
+                <span class="separator">|</span>
+                <a href="index.html#about">Diary Studioについて</a>
+                <span class="separator">|</span>
+                <a href="index.html#making-diary">日記を作る</a>
+                <span class="separator">|</span>
+                <a href="index.html#contact-form">お問い合わせ</a>
+            </nav>
+
+            <p class="copyright">© 2025 Diary Studio</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/tweetdiary.js"></script>
+</body>
+
+</html>

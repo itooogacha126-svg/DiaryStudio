@@ -1,0 +1,640 @@
+@charset "UTF-8";
+
+/* ===全体のリセット・基本設定=== */
+*,
+::before,
+::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+a,
+button {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+body {
+  font-family: sans-serif;
+  font-size: 16px;
+  color: #000000;
+  letter-spacing: 0;
+  background-color: #ffffff;
+  width: 100%;
+  min-height: 100%;
+}
+
+html {
+  width: 100%;
+  min-height: 100%;
+  font-size: 16px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ===全体のリセット・基本設定ここまで=== */
+
+/* ===ヘッダーの設定ここから=== */
+/* 共通 nav */
+.nav-left,
+.nav-right {
+  display: flex;
+  gap: 2rem; /* リンク間隔調整 */
+  align-items: center;
+  position: relative;
+}
+
+.nav-left {
+  margin-left: 10%;
+}
+
+.nav-right {
+  margin-right: 10%;
+}
+
+.nav-left a,
+.nav-right a {
+  text-decoration: none;
+  color: #ffffff;
+  padding: 0.3rem 0.6rem;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+  font-weight: bold;
+  position: relative;
+}
+
+/* リンクのホバーアニメーション改善 */
+.nav-left a::after,
+.nav-right a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 1px;
+  background: #ffffff;
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.nav-left a:hover,
+.nav-right a:hover {
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.nav-left a:hover::after,
+.nav-right a:hover::after {
+  width: 80%;
+}
+
+/* ドロップダウン */
+.dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  list-style: none;
+  padding: 0.5rem 0;
+  margin: 0;
+  min-width: 120px;
+  z-index: 1000;
+  border-radius: 30px;
+  border: 2px solid #597b9c;
+}
+
+.dropdown.open {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.dropdown li a {
+  display: block;
+  padding: 0.5rem 1rem;
+  white-space: nowrap;
+  color: #333;
+  font-weight: 400;
+}
+
+.dropdown li:first-of-type a {
+  font-weight: 700;
+}
+
+.dropdown li a:hover {
+  border-bottom: none;
+  color: #597b9c;
+}
+
+/* ヘッダー、ナビゲーション共通のvマーク */
+.arrow {
+  transition: transform 0.5s ease;
+  vertical-align: middle;
+}
+
+/* メニューが開いたときに回転 */
+.active .arrow {
+  transform: rotate(180deg);
+}
+
+/* トップページの最初のヘッダー */
+.top-header {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  background: #80A1BA;
+  z-index: 10;
+  height: 12vh;
+
+}
+
+/* 波線 */
+.top-header::after {
+  content: '';
+  position: absolute;
+  bottom: -30px;
+  left: 0;
+  width: 100%;
+  height: 30px;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 1200 120' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,0 C150,80 350,80 600,50 C850,20 1050,20 1200,50 L1200,0 L0,0 Z' fill='%2380A1BA'/%3E%3C/svg%3E") no-repeat;
+  background-size: cover;
+  z-index: -1;
+}
+
+/* トップページの固定ヘッダー （スクロールしたら出てくる）*/
+.fixed-header {
+  position: fixed;
+  top: -100px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+  background: #80A1BA;
+  z-index: 1000;
+  opacity: 0;
+  transition: top 0.3s ease, opacity 0.3s ease;
+}
+
+.fixed-header.visible {
+  top: 0;
+  opacity: 0.95;
+}
+
+.fixed-header::after {
+  content: '';
+  position: absolute;
+  bottom: -20px;
+  left: 0;
+  width: 100%;
+  height: 21px; /*20pxだと途切れてしまう*/
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 1200 120' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,0 C150,80 350,80 600,50 C850,20 1050,20 1200,50 L1200,0 L0,0 Z' fill='%2380A1BA'/%3E%3C/svg%3E") no-repeat;
+  background-size: cover;
+  z-index: -1;
+}
+
+/* 中央ロゴ */
+.fixed-header .logo {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  color: #ffffff;
+  height: 10vh;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 1rem;
+}
+
+.fixed-header img {
+  max-height: 70%;
+}
+
+/* サブページ共通のヘッダー */
+.subpage-header {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  background: #80A1BA;
+  z-index: 10; 
+  align-items: center;
+  height: 10vh; 
+  padding: 0 2rem;
+}
+
+/* 中央ロゴ */
+.subpage-header .logo {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  color: #ffffff;
+  height: 10vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 1rem;
+}
+
+.subpage-header img {
+  max-height: 70%;
+}
+
+.subpage-header::after {
+  content: '';
+  position: absolute;
+  bottom: -20px;
+  left: 0;
+  width: 100%;
+  height: 21px;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 1200 120' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,0 C150,80 350,80 600,50 C850,20 1050,20 1200,50 L1200,0 L0,0 Z' fill='%2380A1BA'/%3E%3C/svg%3E") no-repeat;
+  background-size: cover;
+  z-index: -1;
+}
+
+/*スマホ表示用の設定 */
+/* ハンバーガーボタン */
+#menu-btn {
+  display: none;
+}
+
+/* ナビゲーション */
+#side-nav {
+  position: fixed;
+  top: 0;
+  right: -250px; /* 最初は画面外 */
+  width: 250px;
+  height: 100%;
+  background-color: #80A1BA;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.3);
+  transition: right 0.3s;
+  z-index: 1100;
+  padding-top: 60px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  display: none;
+}
+
+#side-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#side-nav ul li {
+  border-bottom: 1px solid #ddd;
+}
+
+#side-nav ul li a {
+  display: block;
+  padding: 15px 20px;
+  text-decoration: none;
+  color: #333;
+}
+
+.side-nav-home {
+  margin-top: 40px;
+}
+
+#side-nav ul li a:hover {
+  background-color: #597b9c;
+}
+
+/* サブメニュー */
+.submenu {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  background-color: #f9f9f9;
+  transition: max-height 0.5s ease, opacity 0.5s ease;
+}
+
+li.active .submenu {
+  max-height: 300px; /* 開いたときの高さ（メニュー数に応じて調整） */
+  opacity: 1;
+}
+
+.submenu li a {
+  padding-left: 40px;
+}
+
+/* オーバーレイ */
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+  z-index: 1050;
+}
+
+/* メニュー開いた状態 */
+#side-nav.open {
+  right: 0;
+}
+
+
+/* ===ヘッダーの設定ここまで=== */
+
+/* ===フッターの設定ここから=== */
+
+/* フッター */
+.site-footer {
+  position: relative;
+  background: #666666;
+  color: #ffffff;
+  text-align: center;
+  padding: 0;
+}
+
+/* 波型装飾 */
+.wave-decoration {
+  position: absolute;
+  top: -59px;
+  /* 波の高さ分、上に出す */
+  left: 0;
+  width: 100%;
+  height: 60px;
+  overflow: visible;
+  /* はみ出しを表示 */
+  line-height: 0;
+}
+
+.wave-decoration svg {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 60px;
+}
+
+.wave-decoration path {
+  fill: #666666;
+}
+
+/* フッターコンテンツ */
+.footer-content {
+  padding: 60px 20px 30px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* ロゴエリア */
+.footer-logo {
+  margin-bottom: 1.5rem;
+  /* 元は 2rem */
+}
+
+.footer-logo img {
+  max-height: 70px;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.footer-logo h3 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 0.5rem 0;
+  color: #ffffff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.tagline {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0.5rem 0 0;
+  font-weight: 300;
+
+  font-family: "Zen Maru Gothic", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+/* ナビゲーション */
+.footer-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 2rem 0;
+  padding: 1.5rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.footer-nav a {
+  color: #ffffff;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.footer-nav a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: #ffffff;
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.footer-nav a:hover {
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.footer-nav a:hover::after {
+  width: 80%;
+}
+
+.footer-nav .separator {
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 300;
+}
+
+.copyright {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 1.5rem 0 0;
+  font-weight: 300;
+}
+
+/* ===フッターの設定ここまで=== */
+/* ===ヘッダーのレスポンシブデザインここから=== */
+@media (max-width: 1200px) {
+
+  /* 中央ロゴ */
+  .fixed-header .logo,.subpage-header .logo {
+    font-size: 1.3rem;
+  }
+
+  .nav-left a,
+  .nav-right a {
+    font-size: 1rem;
+  }
+
+  .nav-left {
+    margin-left: 5%;
+  }
+
+  .nav-right {
+    margin-right: 5%;
+  }
+}
+
+@media (max-width: 900px) {
+  .top-header {
+    display: none;
+  }
+
+  .fixed-header {
+    display: none;
+  }
+
+  .subpage-header{
+    display: none;
+  }
+
+  #menu-btn {
+    display: flex;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1200;
+    border: none;
+    cursor: pointer;
+    color: #80A1BA;
+    background-color: #fafafa;
+    flex-direction: column;
+    align-items: center;
+
+    padding-bottom: 10px;
+    width: 80px;
+    border-radius: 5px;
+    border: 1px solid #80A1BA;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  #menu-btn .icon {
+    font-size: 40px;
+  }
+
+  #menu-btn .text {
+    font-size: 12px;
+  }
+
+  #menu-btn:hover {
+    color: #597b9c;
+    border: 1px solid #597b9c;
+  }
+
+  #menu-btn.open {
+    opacity: 0.9;
+    color: #597b9c;
+    border: 1px solid #597b9c;
+  }
+  #side-nav {
+  display: block;
+}
+#overlay.show {
+  display: block;
+}
+}
+
+/* ===ヘッダーのレスポンシブデザインここまで=== */
+/* ===フッターのレスポンシブデザインここから=== */
+
+@media (max-width: 800px) {
+  .wave-decoration {
+    height: 40px;
+    top: -39px;
+  }
+
+  .wave-decoration svg {
+    height: 40px;
+  }
+
+  .footer-content {
+    padding: 60px 15px 30px;
+  }
+
+  .footer-logo h3 {
+    font-size: 1.5rem;
+  }
+
+  .tagline {
+    font-size: 0.9rem;
+  }
+
+  .footer-nav {
+    flex-direction: column;
+    gap: 0.3rem;
+    padding: 0;
+
+    border-top: 2px solid rgba(255, 255, 255, 0.3);
+    border-bottom: none;
+  }
+
+  .footer-nav .separator {
+    display: none;
+  }
+
+  .footer-nav a {
+    padding: 0.6rem 1rem;
+    width: 100%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .copyright {
+    font-size: 0.75rem;
+  }
+}
+
+/* ===フッターのレスポンシブデザインここまで=== */
+
+/* ===フェードインアニメーションここから=== */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-in.is-active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===フェードインアニメーションここまで=== */

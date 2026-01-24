@@ -1,0 +1,171 @@
+@charset "UTF-8";
+
+@media (max-width: 600px) {
+
+  #first-view,
+  #about,
+  #making-diary,
+  #contact-form {
+    width: 100%;
+  }
+
+  /* 全体にかかわるもの */
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  .namisen {
+    width: 100px;
+  }
+
+  .br-phone {
+    display: inline;
+  }
+
+  /* ===ファーストビューの設定ここから=== */
+
+  #first-view {
+    height: 600px;
+    margin-top: 0;
+    padding-top: 15vh;
+    height: 100vh;
+  }
+
+  #catchphrase {
+    font-size: 1.6rem;
+  }
+
+  #first-view h1 {
+    font-size: 2rem;
+  }
+
+  /* ===ファーストビューの設定ここまで=== */
+  /* ===Diary Studioについて　ここから=== */
+
+  #about-text {
+    margin: 0 auto;
+    padding-top: 5vh;
+    padding-bottom: 5vh;
+    height: 350px;
+  }
+
+  #about .reset-font {
+    font-size: 1.5rem;
+  }
+
+  #about-text-container .reset-font {
+    font-size: 1rem;
+  }
+
+  #about-text p {
+    font-size: 1rem;
+  }
+
+  #about-text .special-text {
+    font-size: 1.2rem;
+  }
+
+  #about-feature {
+    width: 300px;
+  }
+
+  .feature-contents p {
+    font-size: 0.7rem;
+  }
+
+  /* ===Diary Studioについて　ここまで=== */
+
+  /* ===お問い合わせ　ここから=== */
+  form {
+    padding: 1rem;
+  }
+  /* ===お問い合わせ　ここまで=== */
+}
+
+/* 日記の横並びと、特徴の三つだけ早めに縦並びにする */
+
+
+@media (max-width: 900px) {
+  #first-view {
+    height: 600px;
+    margin-top: 0;
+    padding-top: 15vh;
+    height: 100vh;
+  }
+
+  /* ===日記をつくる　ここから=== */
+    #making-diary{
+    padding: 40px 20px;
+  }
+
+  #making-diary-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* 日記の設定 */
+  .cssbook {
+    width: 180px;
+    height: 220px;
+  }
+
+  .cover,.page1,.page2{
+    width: 180px;
+    height: 220px;
+  }
+
+  .cssbook-container {
+    width: 100%;
+    left: 0;
+  }
+
+  .text-page h4 {
+    text-align: center;
+    font-size: 16px;
+    margin: 0;
+  }
+
+  .text-page p {
+    font-size: 15px;
+  }
+
+  /* ===日記をつくる　ここまで=== */
+
+  /* ３つの特徴 */
+
+  #about-feature {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    flex-direction: column;
+    width: 450px;
+    max-width: 100%;
+  }
+
+  .feature-contents {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  .feature-contents p {
+    font-size: 0.9rem;
+  }
+
+  .feature-catchphrase {
+    font-size: 0.8rem;
+    height: 3rem;
+    width: 10rem;
+  }
+
+  .feature-catchphrase img {
+    height: 80%;
+  }
+
+  /* お問い合わせフォーム */
+
+  #contact-form {
+    padding: 40px 20px 80px;
+  }
+
+}
