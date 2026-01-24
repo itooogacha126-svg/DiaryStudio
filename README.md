@@ -18,7 +18,7 @@
 
 ## 主な機能
 ### 絵日記作成（`picturediary.html`）
-![絵日記ページ](./images/README/DiaryStudio.gif)
+![絵日記ページ](./images/README/picturediary.gif)
 - 好きな画像を使って絵日記風の日記を作成
 - 背景・テキスト・文字の色・フォントなどのスタイル変更
 - スタイルリセット機能
